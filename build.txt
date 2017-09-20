@@ -1,0 +1,8 @@
+﻿author = R
+version = 0.1.0.0
+displayName = Banner Checklist
+homepage = https://forums.terraria.org/index.php?threads/banner-checklist.62173/
+weakReferences = FKTModSettings
+buildIgnore = .vs\*, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, unused\*
+includePDB = false
+languageVersion = 6

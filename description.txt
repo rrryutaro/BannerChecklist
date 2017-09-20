@@ -1,0 +1,10 @@
+﻿Banner Checklist:
+This Mod is for confirming whether you have acquired a banner.
+You can also check the display of NPC related to the banner and the number of kills.
+Since it corresponds also to the Mod banner, please inform me when there is a Mod which is not displayed.
+
+*** Acknowledgments ***
+Most of this Mod's code is based on jopojelly's Recipe Browser.
+I am grateful to Mr. jopojelly for publishing a great code.
+In addition, Mod Settings uses Mod Settings Configurator.
+I am grateful to Mr. Flashkirby99 for making the setting of Mod easy.
