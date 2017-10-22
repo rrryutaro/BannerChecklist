@@ -1,5 +1,5 @@
 ﻿author = R
-version = 0.1.0.0
+version = 0.1.0.2
 displayName = Banner Checklist
 homepage = https://forums.terraria.org/index.php?threads/banner-checklist.62173/
 weakReferences = FKTModSettings

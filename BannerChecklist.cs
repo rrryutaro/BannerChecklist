@@ -51,7 +51,10 @@ namespace BannerChecklist
         public override void PostAddRecipes()
         {
             CheckBanner.Initialize();
-            BannerChecklistUI.instance.AddModFilter();
+			if (!Main.dedServ)
+			{
+				BannerChecklistUI.instance.AddModFilter();
+			}
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
