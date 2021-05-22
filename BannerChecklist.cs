@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
+using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria;
 using Terraria.UI;
-using FKTModSettings;
 
 namespace BannerChecklist
 {
     class BannerChecklist : Mod
     {
+        internal static string OldConfigFilePath = Path.Combine(Main.SavePath, "Mod Configs", "BannerChecklist.json");
         internal static BannerChecklist instance;
         internal ModHotKey HotKey;
         internal BannerChecklistTool bannerChecklistTool;
@@ -33,28 +34,24 @@ namespace BannerChecklist
             HotKey = RegisterHotKey("Toggle Banner Checklist", "V");
             if (!Main.dedServ)
             {
-                bannerChecklistTool = new BannerChecklistTool();
-                
-                Config.LoadConfig();
-                LoadedFKTModSettings = ModLoader.GetMod("FKTModSettings") != null;
-                try
+                // 旧設定ファイルの削除
+                var oldConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "TeraBackup.json"); ;
+                if (File.Exists(oldConfigPath))
                 {
-                    if (LoadedFKTModSettings)
-                    {
-                        LoadModSettings();
-                    }
+                    File.Delete(oldConfigPath);
                 }
-                catch { }
+
+                bannerChecklistTool = new BannerChecklistTool();
             }
         }
 
         public override void PostAddRecipes()
         {
             CheckBanner.Initialize();
-			if (!Main.dedServ)
-			{
-				BannerChecklistUI.instance.AddModFilter();
-			}
+            if (!Main.dedServ)
+            {
+                BannerChecklistUI.instance.AddModFilter();
+            }
         }
 
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
@@ -74,13 +71,13 @@ namespace BannerChecklist
                         }
                         bannerChecklistTool.UIUpdate();
                         bannerChecklistTool.UIDraw();
-            
+
                         return true;
                     },
                     InterfaceScaleType.UI)
                 );
             }
-            
+
             layerIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
             if (layerIndex != -1)
             {
@@ -93,36 +90,6 @@ namespace BannerChecklist
                     },
                     InterfaceScaleType.UI)
                 );
-            }
-        }
-
-        public override void PreSaveAndQuit()
-        {
-            //Config.SaveValues();
-        }
-
-        public override void PostUpdateInput()
-        {
-            try
-            {
-                if (LoadedFKTModSettings && !Main.gameMenu)
-                {
-                    UpdateModSettings();
-                }
-            }
-            catch { }
-        }
-
-        private void LoadModSettings()
-        {
-            ModSetting setting = ModSettingsAPI.CreateModSettingConfig(this);
-        }
-
-        private void UpdateModSettings()
-        {
-            ModSetting setting;
-            if (ModSettingsAPI.TryGetModSetting(this, out setting))
-            {
             }
         }
     }

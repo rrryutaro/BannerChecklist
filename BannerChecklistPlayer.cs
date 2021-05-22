@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.DataStructures;
 
 namespace BannerChecklist
 {
-	public class ChestBrowserPlayer : ModPlayer
-	{
+    public class ChestBrowserPlayer : ModPlayer
+    {
         private TagCompound chestBrowserData;
 
         public override void ProcessTriggers(TriggersSet triggersSet)
-		{
-			if (BannerChecklist.instance.HotKey.JustPressed)
-			{
+        {
+            if (BannerChecklist.instance.HotKey.JustPressed)
+            {
                 BannerChecklist.instance.bannerChecklistTool.visible = !BannerChecklist.instance.bannerChecklistTool.visible;
                 if (BannerChecklist.instance.bannerChecklistTool.visible)
                 {
@@ -27,16 +21,16 @@ namespace BannerChecklist
             }
         }
 
-		public override TagCompound Save()
-		{
+        public override TagCompound Save()
+        {
             return new TagCompound
             {
                 ["BannerChecklistUI"] = BannerChecklist.instance.bannerChecklistTool.uistate.Save(),
             };
         }
 
-		public override void Load(TagCompound tag)
-		{
+        public override void Load(TagCompound tag)
+        {
             if (tag.ContainsKey("BannerChecklistUI"))
             {
                 if (tag.Get<object>("BannerChecklistUI").GetType().Equals(typeof(TagCompound)))

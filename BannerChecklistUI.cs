@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 using Terraria.ID;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using BannerChecklist.UIElements;
 
@@ -21,8 +18,8 @@ namespace BannerChecklist
     }
 
     class BannerChecklistUI : UIModState
-	{
-		static internal BannerChecklistUI instance;
+    {
+        static internal BannerChecklistUI instance;
 
         static internal int menuIconSize = 28;
         static internal int menuMargin = 4;
@@ -56,9 +53,9 @@ namespace BannerChecklist
         }
 
         public BannerChecklistUI(UserInterface ui) : base(ui)
-		{
-			instance = this;
-		}
+        {
+            instance = this;
+        }
 
         public override void OnInitialize()
         {
@@ -72,15 +69,15 @@ namespace BannerChecklist
             panelMain = new UIDragablePanel(true, true, true);
             panelMain.caption = caption;
             panelMain.SetPadding(6);
-			panelMain.Left.Set(400f, 0f);
-			panelMain.Top.Set(400f, 0f);
+            panelMain.Left.Set(400f, 0f);
+            panelMain.Top.Set(400f, 0f);
             panelMain.Width.Set(314f, 0f);
             panelMain.MinWidth.Set(314f, 0f);
             panelMain.MaxWidth.Set(1393f, 0f);
             panelMain.Height.Set(131f, 0f);
             panelMain.MinHeight.Set(131f, 0f);
             panelMain.MaxHeight.Set(1000f, 0f);
-			Append(panelMain);
+            Append(panelMain);
 
             //フィルターパネル
             panelFilterChestType = new UIPanel();
@@ -262,14 +259,14 @@ namespace BannerChecklist
         }
 
         internal void UpdateGrid()
-		{
-			if (!updateNeeded) { return; }
-			updateNeeded = false;
+        {
+            if (!updateNeeded) { return; }
+            updateNeeded = false;
 
             Clear();
 
             foreach (var item in CheckBanner.allNPCBanners.Where(x => FilterCheck(x)))
-            { 
+            {
                 var box = new UIBannerSlot(item);
                 gridBanner._items.Add(box);
                 gridBanner._innerList.Append(box);
@@ -324,10 +321,10 @@ namespace BannerChecklist
         }
 
         public override void Update(GameTime gameTime)
-		{
-			base.Update(gameTime);
-			UpdateGrid();
-		}
+        {
+            base.Update(gameTime);
+            UpdateGrid();
+        }
 
         public override TagCompound Save()
         {
